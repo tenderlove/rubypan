@@ -13,18 +13,23 @@ ActiveRecord::Schema.define(:version => 20090413211906) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "authors_ruby_gems", :force => true do |t|
+  create_table "authors_ruby_gems", :id => false, :force => true do |t|
     t.integer "author_id"
     t.integer "ruby_gem_id"
   end
 
   create_table "releases", :force => true do |t|
     t.string   "name"
+    t.string   "version"
+    t.string   "rubyforge_project"
     t.date     "released_on"
+    t.text     "homepage"
+    t.text     "summary"
     t.text     "description"
     t.text     "spec"
     t.integer  "ruby_gem_id"
