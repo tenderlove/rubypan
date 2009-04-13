@@ -1,8 +1,9 @@
 require 'test_helper'
 
 class AuthorTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "has many gems" do
+    assert_difference("RubyGem.count") do
+      assert authors(:aaron).ruby_gems.create!(:name => 'foo')
+    end
   end
 end

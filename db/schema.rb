@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20090413211906) do
 
   create_table "releases", :force => true do |t|
     t.string   "name"
+    t.date     "released_on"
     t.text     "description"
     t.text     "spec"
     t.integer  "ruby_gem_id"
