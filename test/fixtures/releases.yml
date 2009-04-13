@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+nokgiri_1_0_0:
+  name: nokogiri-1.0.0
+  description: nokogiri is an html/xml parser
+  spec: gemspec here
+  ruby_gem: nokogiri
+
+nokgiri_1_0_1:
+  name: nokogiri-1.0.1
+  description: nokogiri is an html/xml parser
+  spec: gemspec here
+  ruby_gem: nokogiri
+
+mechanize_1_0_0:
+  name: mechanize-1.0.0
+  description: mechanize is a handy web browsing object
+  spec: gemspec here
+  ruby_gem: mechanize
+
+mechanize_1_0_1:
+  name: mechanize-1.0.1
+  description: mechanize is a handy web browsing object
+  spec: gemspec here
+  ruby_gem: mechanize
