@@ -9,6 +9,7 @@ class CreateReleases < ActiveRecord::Migration
       t.text    :summary
       t.text    :description
       t.text    :spec
+      t.boolean :latest
       t.references :ruby_gem
 
       t.timestamps

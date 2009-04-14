@@ -1,3 +1,5 @@
+#create index release_idx on releases using gin((setweight(to_tsvector('english', name), 'A') || ' ' || setweight(to_tsvector('english', summary), 'B') || ' ' || setweight(to_tsvector('english', description), 'C')))
+
 task :import_gems => [:environment] do
   spec = Marshal.load(File.read(ENV['GEMS']))
 
@@ -38,5 +40,13 @@ task :import_gems => [:environment] do
     rescue Gem::Exception, ArgumentError => e
       puts "wtf: #{name} => #{e}"
     end
+  end
+
+  seen = {}
+  Release.find(:all, :order => 'released_on desc').each do |release|
+    next if seen[release.ruby_gem_id]
+    release.latest = true
+    release.save!
+    seen[release.ruby_gem_id] = true
   end
 end
