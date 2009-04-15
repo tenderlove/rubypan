@@ -5,7 +5,7 @@
     <% @releases.each do |release| %>
     <li>
       <h2>
-        <a href="<%= release.homepage %>">
+        <a href="<%= release.homepage =~ /^http/ ? release.homepage : '/' %>">
           <%= release.ruby_gem.name %>
         </a>
       </h2>
