@@ -18,7 +18,7 @@ task :import_gems => [:environment] do
   spec.gems.each do |name, gemspec|
     authors = []
     [gemspec.email].flatten.zip([gemspec.author].flatten).each do |email,author|
-      authors << (author_cache[email] ||= Author.create!(
+      authors << (author_cache[[author, email]] ||= Author.create!(
         :name   => author,
         :email  => email
       ))

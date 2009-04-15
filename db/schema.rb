@@ -12,8 +12,8 @@
 ActiveRecord::Schema.define(:version => 20090413211906) do
 
   create_table "authors", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
+    t.text     "name"
+    t.text     "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

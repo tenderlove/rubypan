@@ -1,8 +1,8 @@
 class CreateAuthors < ActiveRecord::Migration
   def self.up
     create_table :authors do |t|
-      t.string :name
-      t.string :email
+      t.text :name
+      t.text :email
 
       t.timestamps
     end
