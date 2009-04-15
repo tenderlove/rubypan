@@ -1,4 +1,4 @@
-class SearchController < ApplicationController
+class ResultsController < ApplicationController
   def index
     redirect_to(:action => 'search', :q => params[:q]) if params[:q]
   end

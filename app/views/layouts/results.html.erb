@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <%= stylesheet_link_tag 'search' %>
+    <title>The RubyPAN Search Site - search.rubypan.org</title>
+  </head>
+  <body id="rubypansearch">
+    <div class="logo">
+      <a href="/"><%= image_tag('rpan_logo.png') %></a>
+    </div>
+    <div class="menubar">
+      <ul>
+        <li>
+          <%= link_to('Authors', :action => 'search', 'q' => 'authors') %>
+        </li>
+        <li>
+          <%= link_to('Recent', :action => 'search', 'q' => 'recent') %>
+        </li>
+        <li>
+          <%= link_to('News', :action => 'search', 'q' => 'news') %>
+        </li>
+        <li>
+          <%= link_to('Mirrors', :action => 'search', 'q' => 'mirrors') %>
+        </li>
+        <li>
+          <%= link_to('FAQ', :action => 'search', 'q' => 'faq') %>
+        </li>
+        <li>
+          <%= link_to('Feedback', :action => 'search', 'q' => 'feedback') %>
+        </li>
+      </ul>
+    </div>
+    <form method="get" action="/search" name="f" class="searchbox">
+      <input type="text" name="q" value="<%= params[:q] %>" size="35" />
+      <input type="submit" value="Search" />
+    </form>
+    <div class="body">
+      <%= yield %>
+    </div>
+    <div class="footer">
+      <div class="stats">
+        <%= RubyGem.count %> Gems,
+        <%= Release.count %> Releases,
+        <%= Author.count %> Authors
+      </div>
+    </div>
+  </body>
+</html>
+
