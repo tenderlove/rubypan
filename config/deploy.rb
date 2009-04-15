@@ -7,7 +7,7 @@ set :repository, 'git://github.com/tenderlove/rubypan.git'
  
 namespace :vlad do
   remote_task :start_app, :roles => :app do
-    run "sudo pkill -TERM -u www -f #{domain}/current/public/dispatch.fcgi"
+    run "pkill -TERM -u www -f #{domain}/current/public/dispatch.fcgi"
   end
  
   remote_task :stop_app, :roles => :app # nothing to do
