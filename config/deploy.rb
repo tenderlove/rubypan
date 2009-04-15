@@ -1,3 +1,5 @@
+require 'vlad/git'
+
 set :application, 'rubypan'
 set :domain, 'rubypan.org'
 set :deploy_to, '/data/www/rubypan.org'
