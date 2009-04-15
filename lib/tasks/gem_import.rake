@@ -1,5 +1,14 @@
 task :import_gems => [:environment] do
-  spec = Marshal.load(File.read(ENV['GEMS']))
+  unless ENV['MARSHAL_SPEC']
+    require 'tempfile'
+    Dir.chdir(Dir::tmpdir) do
+      url = 'http://gems.rubyforge.org/Marshal.4.8'
+      system("wget #{url} || curl -O #{url}")
+    end
+    ENV['MARSHAL_SPEC'] = File.join(Dir::tmpdir, 'Marshal.4.8')
+  end
+
+  spec = Marshal.load(File.read(ENV['MARSHAL_SPEC']))
 
   gem_cache = Hash.new { |h,name|
     h[name] = RubyGem.create!(:name => name)
@@ -27,6 +36,8 @@ task :import_gems => [:environment] do
     begin
       rubygem.releases.create!(
         :name         => name,
+        :meta         =>
+          ([gemspec.email].flatten + [gemspec.author].flatten).join(', '),
         :version      => gemspec.version.to_s,
         :homepage     => gemspec.homepage,
         :rubyforge_project => gemspec.rubyforge_project,

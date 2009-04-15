@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20090413211906) do
     t.text     "summary"
     t.text     "description"
     t.text     "spec"
+    t.text     "meta"
     t.boolean  "latest"
     t.integer  "ruby_gem_id"
     t.datetime "created_at"
