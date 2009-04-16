@@ -5,21 +5,29 @@ nokgiri_1_0_0:
   description: nokogiri is an html/xml parser
   spec: gemspec here
   ruby_gem: nokogiri
+  version: 1.0.0
+  latest: f
 
 nokgiri_1_0_1:
   name: nokogiri-1.0.1
   description: nokogiri is an html/xml parser
   spec: gemspec here
   ruby_gem: nokogiri
+  version: 1.0.1
+  latest: t
 
 mechanize_1_0_0:
   name: mechanize-1.0.0
   description: mechanize is a handy web browsing object
   spec: gemspec here
   ruby_gem: mechanize
+  version: 1.0.0
+  latest: f
 
 mechanize_1_0_1:
   name: mechanize-1.0.1
   description: mechanize is a handy web browsing object
   spec: gemspec here
   ruby_gem: mechanize
+  version: 1.0.1
+  latest: t
