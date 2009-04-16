@@ -11,3 +11,5 @@ Rails::Initializer.run do |config|
   config.gem "texticle"
   config.time_zone = 'UTC'
 end
+
+Mime::Type.register 'application/octet-stream', :Marshal

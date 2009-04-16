@@ -10,7 +10,7 @@ class ResultsControllerTest < ActionController::TestCase
   end
 
   test "search returns Marshal" do
-    get :search, :f => 'Marshal', :q => 'nokogiri'
+    get :search, :format => 'Marshal', :q => 'nokogiri'
     assert assigns(:releases)
     assert_equal 'application/octet-stream', @response.headers['content-type']
 

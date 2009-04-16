@@ -8,18 +8,19 @@ class ResultsController < ApplicationController
       :include => [:ruby_gem => :authors]
     )
 
-    if params[:f] == 'Marshal' then
-      response.charset = nil
-      response.content_type = 'application/octet-stream'
-      response.header['Content-Transfer-Encoding'] = 'binary'
+    respond_to do |format|
+      format.Marshal do
+        response.header['Content-Transfer-Encoding'] = 'binary'
 
-      source = 'http://gems.rubyforge.org/'
-      releases = @releases.map do |release|
-        [[release.ruby_gem.name, Gem::Version.new(release.version),
-          Gem::Platform::RUBY], source]
+        source = 'http://gems.rubyforge.org/'
+        releases = @releases.map do |release|
+          [[release.ruby_gem.name, Gem::Version.new(release.version),
+            Gem::Platform::RUBY], source]
+        end
+
+        return render(:text => Marshal.dump(releases))
       end
-
-      render :text => Marshal.dump(releases)
+      format.html
     end
   end
 end
