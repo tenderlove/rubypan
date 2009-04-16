@@ -1,3 +1,4 @@
+desc "Creates Postgres fulltext indexes"
 task :search_index => [:environment] do
   Dir[File.join(RAILS_ROOT, 'app', 'models', '*.rb')].each do |f|
     klass = File.basename(f, '.rb').classify.constantize

@@ -1,3 +1,4 @@
+desc "Imports gems from a remote repository's Marshal.4.8 into a fresh DB"
 task :import_gems => [:environment] do
   unless ENV['MARSHAL_SPEC']
     require 'tempfile'
