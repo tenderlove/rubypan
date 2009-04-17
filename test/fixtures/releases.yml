@@ -1,19 +1,21 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-nokgiri_1_0_0:
+nokogiri_1_0_0:
   name: nokogiri-1.0.0
   description: nokogiri is an html/xml parser
   spec: gemspec here
   ruby_gem: nokogiri
   version: 1.0.0
+  released_on: 2008-01-01
   latest: f
 
-nokgiri_1_0_1:
+nokogiri_1_0_1:
   name: nokogiri-1.0.1
   description: nokogiri is an html/xml parser
   spec: gemspec here
   ruby_gem: nokogiri
   version: 1.0.1
+  released_on: 2009-01-01
   latest: t
 
 mechanize_1_0_0:
@@ -22,6 +24,7 @@ mechanize_1_0_0:
   spec: gemspec here
   ruby_gem: mechanize
   version: 1.0.0
+  released_on: 2008-01-01
   latest: f
 
 mechanize_1_0_1:
@@ -30,4 +33,5 @@ mechanize_1_0_1:
   spec: gemspec here
   ruby_gem: mechanize
   version: 1.0.1
+  released_on: 2009-01-01
   latest: t

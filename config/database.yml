@@ -4,7 +4,7 @@ development:
   adapter: postgresql
   database: rpan_development
   encoding: unicode
-  username: postgres
+  username: rubypan
   pool: 5
   timeout: 5000
 
