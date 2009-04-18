@@ -144,11 +144,11 @@ span.date
     background-position: center left;
 }
 .gem-rating a.one-gems{
-    width: 12%;
+    width: 20%;
     z-index: 6;
 }
 .gem-rating a.two-gems{
-    width: 24%;
+    width: 40%;
     z-index: 5;
 }
 .gem-rating a.three-gems{
