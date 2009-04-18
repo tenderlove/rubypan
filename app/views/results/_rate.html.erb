@@ -1,0 +1,20 @@
+<% @convert = %w[one two three four five] %>
+
+<div class="rateit" style="float:left;"><b>rated:</b> <%= number_with_precision(asset.rating, 1) %>/5 (<%# asset.ratings.size %> votes)</div>
+<div id="gem-ratings-block-<%= asset.id %>" class="gem-ratings-block">
+    <ul class='gem-rating'>
+	      <li class='current-rating' style='width:<%= (asset.rating * 20).to_i -%>px;'>
+            Currently <%= number_with_precision(asset.rating, 1) %>/5 Gems.
+        </li>
+        <% 1.upto(5) do |x| -%>
+        	<li>
+	            <%= link_to_remote( "#{x}", 
+	                 { :url => { :controller => "results", :action => "rate", :id => asset.id, 
+		                 :rating => x, :rateable_type => asset.class.to_s } },
+                   { :class => "#{@convert[x-1]}-gems", :name => "#{pluralize(x,'gem')} out of 5",
+                         :title => "Rate this a #{x} out of 5" } )
+							%>
+	        </li>
+        <% end -%>
+    </ul>  
+</div>

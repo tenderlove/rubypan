@@ -25,4 +25,8 @@ class ResultsController < ApplicationController
       format.html
     end
   end
+  
+  def rate
+  end
+  
 end

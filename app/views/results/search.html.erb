@@ -8,9 +8,9 @@
         <a href="<%= release.homepage =~ /^http/ ? release.homepage : '/' %>">
           <%= release.ruby_gem.name %>
         </a>
-        &nbsp;<span class="rate">rate it: </span>
       </h2>
-      <p>
+      <%= render :partial => "rate", :locals => { :asset => release } %>
+      <p style="clear:both;">
         <span class="small summary"><%= release.summary %></span>
       </p>
       <p>
