@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090413211906) do
+ActiveRecord::Schema.define(:version => 20090418052030) do
 
   create_table "authors", :force => true do |t|
     t.text     "name"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(:version => 20090413211906) do
     t.integer "author_id"
     t.integer "ruby_gem_id"
   end
+
+  create_table "ratings", :force => true do |t|
+    t.integer "rating"
+    t.integer "integer"
+    t.integer "rateable_id",   :null => false
+    t.string  "rateable_type", :null => false
+  end
+
+  add_index "ratings", ["rateable_id", "rating"], :name => "index_ratings_on_rateable_id_and_rating"
 
   create_table "releases", :force => true do |t|
     t.string   "name"

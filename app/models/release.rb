@@ -1,6 +1,7 @@
 class Release < ActiveRecord::Base
+  acts_as_rateable
   belongs_to :ruby_gem
-
+  
   index do
     name        'A'
     summary     'B'
