@@ -104,5 +104,72 @@ span.date
 
 .rate {
   font-size:small;
-  
 }
+
+.gem-rating,
+.gem-rating a:hover,
+.gem-rating a:active,
+.gem-rating a:focus,
+.gem-rating .current-rating{
+    background: url('/images/gem_rater.gif') left -1000px repeat-x;
+}
+.gem-rating{
+    position: relative;
+    width: 150px;
+    height: 30px;
+    overflow: hidden;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-position: top left;
+}
+.star-rating li{
+    display: inline;
+}
+.gem-rating a,
+.gem-rating .current-rating{
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-indent: -1000em;
+    height: 30px;
+    line-height: 30px;
+    outline: none;
+    overflow: hidden;
+    border: none;
+}
+.gem-rating a:hover,
+.gem-rating a:active,
+.gem-rating a:focus{
+    background-position: center left;
+}
+.gem-rating a.one-gems{
+    width: 20%;
+    z-index: 6;
+}
+.gem-rating a.two-gems{
+    width: 40%;
+    z-index: 5;
+}
+.gem-rating a.three-gems{
+    width: 60%;
+    z-index: 4;
+}
+.gem-rating a.four-gems{
+    width: 80%;
+    z-index: 3;
+}
+.gem-rating a.five-gems{
+    width: 100%;
+    z-index: 2;
+}
+.gem-rating .current-rating{
+    z-index: 1;
+    background-position: bottom left;
+}
+.gem-ratings-block {
+    font-size: .75em;
+    text-align: center;
+    width: 100%;
+}
+
