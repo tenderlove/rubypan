@@ -8,17 +8,19 @@
         @title
       ].compact.join(' - ') %>
     </title>
-    <script type="text/javascript">
-      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-      </script>
+    <% unless ['development', 'test'].include?(RAILS_ENV) %>
       <script type="text/javascript">
-      try {
-        var pageTracker = _gat._getTracker("UA-1260604-7");
-        pageTracker._trackPageview();
-      } catch(err) {
-      }
-    </script>
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+        try {
+          var pageTracker = _gat._getTracker("UA-1260604-7");
+          pageTracker._trackPageview();
+        } catch(err) {
+        }
+      </script>
+    <% end %>
   </head>
   <body id="rubypansearch">
     <div class="logo">
@@ -34,9 +36,8 @@
         </li>
         <li>
           <%= link_to('Recent',
-                      :controller => 'results',
-                      :action     => 'search',
-                      :q          => 'recent'
+                      :controller => 'releases',
+                      :action     => 'latest'
           ) %>
         </li>
         <li>
