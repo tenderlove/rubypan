@@ -51,7 +51,7 @@ class ResultsController < ApplicationController
   
   private 
     def avg_ratings_and_update release_id
-      # average all ratings for that release; update releases table
+      # average all ratings for that release; count num_ratings, update releases table
       avg = Rating.avg_release_rating(release_id)
       num = Rating.num_ratings(release_id)
       rel = Release.find(release_id)
