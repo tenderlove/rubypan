@@ -27,10 +27,35 @@ class ResultsController < ApplicationController
   end
   
   def rate
-    rating = params[:rating].to_i
+    @client_ip = request.remote_ip.to_s
     release_id = params[:id].to_i
-    # make AR call to insert rating into table
-    Release.find(release_id).rating = rating
+    rating = params[:rating].to_i
+    
+    Rating.transaction do
+      r = Rating.new
+      r.ip_address = @client_ip
+      r.rateable_type = params[:rateable_type]
+      r.rating = rating
+      r.rateable_id = release_id
+      r.save
+      avg_ratings_and_update(release_id)
+    end
+    
+    if (request.xhr?)
+      render :text => "You rated this gem a #{rating} out of 5"
+    else
+      query = params[:q] || ''
+      render :action => 'search', :query => query
+    end
   end
   
+  private 
+    def avg_ratings_and_update release_id
+      # average all ratings for that release; update releases table
+      avg = Rating.avg_release_rating(release_id)
+      rel = Release.find(release_id)
+      rel.avg_rating = avg
+      rel.save
+    end
+    
 end
