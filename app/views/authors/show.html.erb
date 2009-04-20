@@ -3,7 +3,7 @@
 <%= render(
   :partial => 'releases/list',
   :locals => {
-  :releases => @author.latest_releases.sort_by { |release|
+  :releases => @author.releases.select { |r| r.latest? }.sort_by { |release|
       release.ruby_gem.name
     }
   }
