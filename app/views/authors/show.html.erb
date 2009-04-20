@@ -1,0 +1,10 @@
+<h1><%= @author.name || 'nil name' %></h1>
+
+<%= render(
+  :partial => 'releases/list',
+  :locals => {
+  :releases => @author.latest_releases.sort_by { |release|
+      release.ruby_gem.name
+    }
+  }
+) %>

@@ -20,7 +20,12 @@ class Release < ActiveRecord::Base
     }
 
     author_cache = Hash.new { |h, tuple|
-      h[tuple] = Author.find_or_create_by_name_and_email(*tuple)
+      a = Author.find_or_create_by_name(tuple.first)
+      if tuple.last && a.email != tuple.last
+        a.email = tuple.last
+        a.save!
+      end
+      h[tuple] = a
     }
 
     release_names = {}

@@ -6,7 +6,7 @@ class ResultsController < ApplicationController
   def search
     query = params[:q] || ''
 
-    @releases = Release.search(params[:q].sub('.', '')).latest.find(:all,
+    @releases = Release.search(params[:q].gsub('.', ' ')).latest.find(:all,
       :include => [:ruby_gem => :authors]
     )
 

@@ -1,7 +1,13 @@
 <html>
   <head>
     <%= stylesheet_link_tag 'search' %>
-    <title>The RubyPAN Search Site - search.rubypan.org</title>
+    <title>
+      <%= [
+        'The RubyPAN Search Site',
+        'rubypan.org',
+        @title
+      ].compact.join(' - ') %>
+    </title>
     <script type="text/javascript">
       var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
       document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -21,22 +27,45 @@
     <div class="menubar">
       <ul>
         <li>
-          <%= link_to('Authors', :action => 'search', 'q' => 'authors') %>
+          <%= link_to('Authors',
+                      :controller => 'authors',
+                      :action     => 'index'
+          ) %>
         </li>
         <li>
-          <%= link_to('Recent', :action => 'search', 'q' => 'recent') %>
+          <%= link_to('Recent',
+                      :controller => 'results',
+                      :action     => 'search',
+                      :q          => 'recent'
+          ) %>
         </li>
         <li>
-          <%= link_to('News', :action => 'search', 'q' => 'news') %>
+          <%= link_to('News',
+                      :controller => 'results',
+                      :action     => 'search',
+                      :q          => 'news'
+          ) %>
         </li>
         <li>
-          <%= link_to('Mirrors', :action => 'search', 'q' => 'mirrors') %>
+          <%= link_to('Mirrors',
+                      :controller => 'results',
+                      :action     => 'search',
+                      :q          => 'mirrors'
+          ) %>
         </li>
         <li>
-          <%= link_to('FAQ', :action => 'search', 'q' => 'faq') %>
+          <%= link_to('FAQ',
+                      :controller => 'results',
+                      :action     => 'search',
+                      :q          => 'faq'
+          ) %>
         </li>
         <li>
-          <%= link_to('Feedback', :action => 'search', 'q' => 'feedback') %>
+          <%= link_to('Feedback',
+                      :controller => 'results',
+                      :action     => 'search',
+                      :q          => 'feedback'
+          ) %>
         </li>
       </ul>
     </div>

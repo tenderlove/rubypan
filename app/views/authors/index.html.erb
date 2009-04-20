@@ -1,0 +1,27 @@
+<ul class="result_list">
+  <% @authors.each do |author| %>
+    <li>
+      <h2>
+        <%= link_to(author.name, author) %>
+      </h2>
+      <p>
+        <span class="small summary">
+          <%= author.ruby_gems.length %> Gems,
+          <%= author.releases.length %> Releases
+        </span>
+      </p>
+      <p>
+        <span class="small release">
+          <%- last_release = author.releases.sort_by { |x|
+                x.released_on
+              }.last %>
+          Latest release: <%= last_release.ruby_gem.name %> on
+          <span class="small date">
+            <%= author.releases.sort_by { |x| x.released_on }.last.released_on %>
+          </span>
+        </span>
+      </p>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate(@authors) %>
