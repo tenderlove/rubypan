@@ -27,6 +27,10 @@ class ResultsController < ApplicationController
   end
   
   def rate
+    rating = params[:rating].to_i
+    release_id = params[:id].to_i
+    # make AR call to insert rating into table
+    Release.find(release_id).rating = rating
   end
   
 end
