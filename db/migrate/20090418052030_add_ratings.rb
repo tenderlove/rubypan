@@ -1,7 +1,7 @@
 class AddRatings < ActiveRecord::Migration
   def self.up
     create_table :ratings do |t|
-      t.integer :rating, :integer    
+      t.integer :rating,     
       t.integer :rateable_id, :null => false
       t.string :rateable_type, :null => false
     end
