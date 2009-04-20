@@ -42,7 +42,7 @@ class ResultsController < ApplicationController
     end
     
     if (request.xhr?)
-      render :text => "You rated this gem a #{rating} out of 5"
+      render :text => "You rated this gem a #{rating} out of 5! &nbsp;"
     else
       query = params[:q] || ''
       render :action => 'search', :query => query
@@ -53,8 +53,10 @@ class ResultsController < ApplicationController
     def avg_ratings_and_update release_id
       # average all ratings for that release; update releases table
       avg = Rating.avg_release_rating(release_id)
+      num = Rating.num_ratings(release_id)
       rel = Release.find(release_id)
       rel.avg_rating = avg
+      rel.num_ratings = num
       rel.save
     end
     

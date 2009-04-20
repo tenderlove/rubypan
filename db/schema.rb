@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090420045304) do
+ActiveRecord::Schema.define(:version => 20090420063015) do
 
   create_table "authors", :force => true do |t|
     t.text     "name"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20090420045304) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "avg_rating"
+    t.integer  "num_ratings"
   end
 
   create_table "ruby_gems", :force => true do |t|
