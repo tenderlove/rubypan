@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20090418052030) do
 
   create_table "ratings", :force => true do |t|
     t.integer "rating"
-    t.integer "integer"
     t.integer "rateable_id",   :null => false
     t.string  "rateable_type", :null => false
   end
