@@ -26,4 +26,18 @@ class ResultsControllerTest < ActionController::TestCase
     get :index, :q => 'foobar'
     assert_redirected_to :action => 'search'
   end
+  
+  test "ratings widget shows up with links" do
+    get :search, :format => 'Marshal', :q => 'nokogiri'
+    #assert assigns(:releases)
+    #number of nokogiri gems = 2
+    num_nokogiri_gems = Releases.find(:all, :conditions => ['ruby_gem = ?', 'nokogiri'])
+    assert_select 'div#rate_area', :count => 1
+    assert_select 'ul.gem-rating', :count => num_nokogiri_gems
+    assert_select 'a.one-gems', :count => num_nokogiri_gems
+  end
+  
+  test "clicking on rating executes xhr request" do
+  end
+  
 end

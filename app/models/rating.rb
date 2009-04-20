@@ -8,5 +8,4 @@ class Rating < ActiveRecord::Base
     Rating.count(:rating, :conditions => ['rateable_id = ?', release_id])
   end
   
-  
 end

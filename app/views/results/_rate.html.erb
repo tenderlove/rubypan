@@ -3,7 +3,7 @@
 <% asset.avg_rating = asset.avg_rating ||= 0 %>
 <% asset.num_ratings = asset.num_ratings ||= 0 %>
 
-<div class="rateit" id="rate_resp" style="float:left;"><b>rating:</b> <%= number_with_precision(asset.avg_rating, 1) %>/5 (<%= asset.num_ratings %> votes)&nbsp;</div>
+<div class="rateit" id="rate_area" style="float:left;"><b>rating:</b> <%= number_with_precision(asset.avg_rating, 1) %>/5 (<%= asset.num_ratings %> votes)&nbsp;</div>
 <div id="gem-ratings-block-<%= asset.id %>" class="gem-ratings-block">
 	  <ul class='gem-rating'>
 	      <li class='current-rating' style='width:<%= (asset.avg_rating * 18).to_i -%>px;'>
@@ -16,7 +16,7 @@
         <% 1.upto(5) do |x| -%>
         	<li>
 	            <%= link_to_remote( "#{x}", 
-	                 { :url => { :controller => "results", :action => "rate", :id => asset.id, :rating => x, :rateable_type => 'Release' }, :update => 'rate_resp' },
+	                 { :url => { :controller => "results", :action => "rate", :id => asset.id, :rating => x, :rateable_type => 'Release' }, :update => 'rate_area' },
                    { :id => "rate_#{asset.id}_#{x}", :class => "#{@convert[x-1]}-gems rateable", :name => "#{pluralize(x,'gem')} out of 5", :title => "Rate this a #{x} out of 5" } )
 							%>
 	        </li>
