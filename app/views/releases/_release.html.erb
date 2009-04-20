@@ -1,0 +1,23 @@
+<li>
+  <h2>
+    <a href="<%= release.homepage =~ /^http/ ? release.homepage : '/' %>">
+      <%= release.ruby_gem.name %>
+    </a>
+  </h2>
+  <p>
+    <span class="small summary"><%= release.summary %></span>
+  </p>
+  <p>
+    <span class="small release">
+      <a href="http://rubyforge.org/projects/<%= release.rubyforge_project %>">
+        <%= release.ruby_gem.name %>&ndash;<%= release.version %>
+      </a> &ndash;
+      <span class="small date"><%= release.released_on %></span> &ndash;
+      <span class="small author">
+        <% release.ruby_gem.authors.map do |author| %>
+          <%= link_to(truncate(author.name || 'nil name'), author) %>
+        <% end.join(", ") %>
+      </span>
+    </span>
+  </p>
+</li>
