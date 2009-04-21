@@ -10,7 +10,7 @@
 						<% if asset.avg_rating == nil %>
               Be the first to rate this gem!
 						<% else %>
-						  Currently <%= number_with_precision(asset.avg_rating, 1) %>/5 Gems.
+						  Currently <%= number_with_precision(asset.avg_rating, :precision => 1) %>/5 Gems.
 						<% end %>
         </li>
         <% 1.upto(5) do |x| -%>

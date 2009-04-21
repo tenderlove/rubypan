@@ -35,19 +35,18 @@ class ResultsControllerTest < ActionController::TestCase
     #get :_rate, :locals => { :asset => result }
     assert_response :success
     
+    #6 total
+    assert_select 'li.current-rating', 1
     assert_select 'ul.gem-rating' do
       assert_select 'li', 6
     end
+    #5 rateables
+    assert_select 'ul.gem-rating' do
+      assert_select 'li' do
+        assert_select 'a.rateable', 5
+      end
+    end
     
-    #number of nokogiri gems = 2
-    #a_gem_id = Release.find(:first).id
-    #puts "a gem id: #{a_gem_id}"
-    # a_gem_id.each do |x|
-    #       puts "id: #{x.id}"
-    #     end
-    
-    #num_nokogiri_gems = Release.find(:all, :conditions => ['ruby_gem_id = ?', a_gem_id]).length
-    #assert_equal 2, num_nokogiri_gems
     assert_select 'div#rate_area', :count => 1
     assert_select 'ul.gem-rating', :count => 1
     assert_select 'a.one-gems', :count => 1
