@@ -27,21 +27,34 @@ class ResultsControllerTest < ActionController::TestCase
     assert_redirected_to :action => 'search'
   end
   
-  test "ratings widget shows up with links" do
-    get :search, :format => 'Marshal', :q => 'nokogiri'
-    #assert assigns(:releases)
+  test "ratings partial shows up with links" do
+    q = releases(:nokogiri_1_0_0).ruby_gem.name
+    assert_equal q, 'nokogiri'
+    get :search, :format => 'html', :q => q
+    #@asset = result
+    #get :_rate, :locals => { :asset => result }
+    assert_response :success
+    
+    assert_select 'ul.gem-rating' do
+      assert_select 'li', 6
+    end
+    
     #number of nokogiri gems = 2
-    a_gem_id = Release.find(:first).id
-    puts "a gem id: #{a_gem_id}"
+    #a_gem_id = Release.find(:first).id
+    #puts "a gem id: #{a_gem_id}"
     # a_gem_id.each do |x|
     #       puts "id: #{x.id}"
     #     end
     
-    num_nokogiri_gems = Release.find(:all, :conditions => ['ruby_gem_id = ?', a_gem_id]).length
-    assert_equal 2, num_nokogiri_gems
-    assert_select 'div#rate_area', :count => 0
-    assert_select 'ul.gem-rating', :count => num_nokogiri_gems
-    assert_select 'a.one-gems', :count => num_nokogiri_gems
+    #num_nokogiri_gems = Release.find(:all, :conditions => ['ruby_gem_id = ?', a_gem_id]).length
+    #assert_equal 2, num_nokogiri_gems
+    assert_select 'div#rate_area', :count => 1
+    assert_select 'ul.gem-rating', :count => 1
+    assert_select 'a.one-gems', :count => 1
+    assert_select 'a.two-gems', :count => 1
+    assert_select 'a.three-gems', :count => 1
+    assert_select 'a.four-gems', :count => 1
+    assert_select 'a.five-gems', :count => 1
   end
   
   test "clicking on rating executes xhr request" do
