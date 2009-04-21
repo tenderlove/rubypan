@@ -1,0 +1,6 @@
+=== 1.1.0
+
+* New Features
+	* Authors page lists gems by author
+	* Recent lists recent gems
+	* Recent has RSS / Atom feeds

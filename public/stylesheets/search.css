@@ -85,6 +85,12 @@ ul.result_list li
   margin-bottom: 1em;
 }
 
+li.section_header
+{
+  text-align: center;
+  background: #C0C0C0;
+}
+
 span.small
 {
   font-size: 95%;

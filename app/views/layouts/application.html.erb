@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <%= stylesheet_link_tag 'search' %>
+    <%= yield :header %>
+    <title>
+      <%= [
+        'The RubyPAN Search Site',
+        'rubypan.org',
+        @title
+      ].compact.join(' - ') %>
+    </title>
+    <% unless ['development', 'test'].include?(RAILS_ENV) %>
+      <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+        try {
+          var pageTracker = _gat._getTracker("UA-1260604-7");
+          pageTracker._trackPageview();
+        } catch(err) {
+        }
+      </script>
+    <% end %>
+  </head>
+  <body id="rubypansearch">
+    <div class="logo">
+      <a href="/"><%= image_tag('rpan_logo.png') %></a>
+    </div>
+    <div class="menubar">
+      <ul>
+        <li>
+          <%= link_to('Authors',
+                      :controller => 'authors',
+                      :action     => 'index'
+          ) %>
+        </li>
+        <li>
+          <%= link_to('Recent',
+                      :controller => 'releases',
+                      :action     => 'latest'
+          ) %>
+        </li>
+        <li>
+          <%= link_to('News',
+                      :controller => 'results',
+                      :action     => 'search',
+                      :q          => 'news'
+          ) %>
+        </li>
+        <li>
+          <%= link_to('Mirrors',
+                      :controller => 'results',
+                      :action     => 'search',
+                      :q          => 'mirrors'
+          ) %>
+        </li>
+        <li>
+          <%= link_to('FAQ',
+                      :controller => 'results',
+                      :action     => 'search',
+                      :q          => 'faq'
+          ) %>
+        </li>
+        <li>
+          <%= link_to('Feedback',
+                      :controller => 'results',
+                      :action     => 'search',
+                      :q          => 'feedback'
+          ) %>
+        </li>
+      </ul>
+    </div>
+    <form method="get" action="/search" name="f" class="searchbox">
+      <input type="text" name="q" value="<%= params[:q] %>" size="35" />
+      <input type="submit" value="Search" />
+    </form>
+    <div class="body">
+      <%= yield %>
+    </div>
+    <div class="footer">
+      <div class="stats">
+        <%= RubyGem.count %> Gems,
+        <%= Release.count %> Releases,
+        <%= Author.count %> Authors
+      </div>
+    </div>
+  </body>
+</html>
+

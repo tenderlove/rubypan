@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090420063015) do
+ActiveRecord::Schema.define(:version => 20090420164334) do
 
   create_table "authors", :force => true do |t|
     t.text     "name"
@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(:version => 20090420063015) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "authors", ["name"], :name => "index_authors_on_name", :unique => true
 
   create_table "authors_ruby_gems", :id => false, :force => true do |t|
     t.integer "author_id"
@@ -49,6 +51,8 @@ ActiveRecord::Schema.define(:version => 20090420063015) do
     t.float    "avg_rating"
     t.integer  "num_ratings"
   end
+
+  add_index "releases", ["latest"], :name => "index_releases_on_latest"
 
   create_table "ruby_gems", :force => true do |t|
     t.string   "name"

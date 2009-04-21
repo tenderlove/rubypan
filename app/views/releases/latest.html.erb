@@ -1,0 +1,26 @@
+<%- @title = 'Latest' %>
+<%- seen_months = {} %>
+<% content_for :header do %>
+  <link href="<%= url_for(:action => 'latest', :format => 'xml') %>"
+  type="application/rss+xml" rel="alternate"
+  title="Latest Gems RSS Feed" />
+  <link href="<%= url_for(:action => 'latest', :format => 'atom') %>"
+  type="application/atom+xml" rel="alternate"
+  title="Latest Gems Atom Feed" />
+<% end %>
+<ul class="result_list">
+  <% @releases.each do |release| %>
+    <% unless seen_months[release.released_on] %>
+      <%- seen_months[release.released_on] = true %>
+      <li class='section_header'>
+        <h2>
+          <%= release.released_on.strftime('%B %d, %Y') %>
+        </h2>
+      </li>
+    <% end %>
+    <%= render(:partial => 'releases/release', :locals => {
+      :release => release
+    }) %>
+  <% end %>
+</ul>
+<%= will_paginate(@releases) %>
