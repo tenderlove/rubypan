@@ -31,8 +31,6 @@ class ResultsControllerTest < ActionController::TestCase
     q = releases(:nokogiri_1_0_0).ruby_gem.name
     assert_equal q, 'nokogiri'
     get :search, :format => 'html', :q => q
-    #@asset = result
-    #get :_rate, :locals => { :asset => result }
     assert_response :success
     
     #6 total
@@ -79,8 +77,6 @@ class ResultsControllerTest < ActionController::TestCase
     assert_equal 4, r.avg_rating
     assert_equal 2, r.num_ratings
   end
-  
-  
   
 end
 
