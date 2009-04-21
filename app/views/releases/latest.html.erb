@@ -1,5 +1,10 @@
 <%- @title = 'Latest' %>
 <%- seen_months = {} %>
+<% content_for :header do %>
+  <link href="<%= url_for(:action => 'latest', :format => 'xml') %>"
+  type="application/rss+xml" rel="alternate"
+  title="Latest Gems RSS Feed" />
+<% end %>
 <ul class="result_list">
   <% @releases.each do |release| %>
     <% unless seen_months[release.released_on] %>
