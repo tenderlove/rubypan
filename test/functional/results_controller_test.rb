@@ -31,8 +31,15 @@ class ResultsControllerTest < ActionController::TestCase
     get :search, :format => 'Marshal', :q => 'nokogiri'
     #assert assigns(:releases)
     #number of nokogiri gems = 2
-    num_nokogiri_gems = Releases.find(:all, :conditions => ['ruby_gem = ?', 'nokogiri'])
-    assert_select 'div#rate_area', :count => 1
+    a_gem_id = Release.find(:first).id
+    puts "a gem id: #{a_gem_id}"
+    # a_gem_id.each do |x|
+    #       puts "id: #{x.id}"
+    #     end
+    
+    num_nokogiri_gems = Release.find(:all, :conditions => ['ruby_gem_id = ?', a_gem_id]).length
+    assert_equal 2, num_nokogiri_gems
+    assert_select 'div#rate_area', :count => 0
     assert_select 'ul.gem-rating', :count => num_nokogiri_gems
     assert_select 'a.one-gems', :count => num_nokogiri_gems
   end
