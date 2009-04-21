@@ -56,7 +56,34 @@ class ResultsControllerTest < ActionController::TestCase
     assert_select 'a.five-gems', :count => 1
   end
   
-  test "clicking on rating executes xhr request" do
+  test "a new rating posted via xhr should add a record to the ratings table, and save the average" do
+    rel_id = releases(:nokogiri_1_0_0).id
+    num_ratings = Rating.num_ratings(rel_id)
+    puts num_ratings
+    
+    #rate once
+    xhr :post, :rate, {:id => rel_id, :rateable_type => 'Release', :rating => 3}
+    assert_response :success
+    num_ratings_after = Rating.num_ratings(rel_id)
+    assert_equal num_ratings_after, num_ratings + 1
+    r = Release.find(rel_id)
+    assert_equal 3, r.avg_rating
+    assert_equal 1, r.num_ratings
+    
+    #rate twice
+    xhr :post, :rate, {:id => rel_id, :rateable_type => 'Release', :rating => 5}
+    assert_response :success
+    third_rating = Rating.num_ratings(rel_id)
+    assert_equal third_rating, num_ratings_after + 1
+    r = Release.find(rel_id)
+    assert_equal 4, r.avg_rating
+    assert_equal 2, r.num_ratings
   end
   
+  
+  
 end
+
+
+
+
