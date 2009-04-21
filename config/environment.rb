@@ -9,6 +9,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem "texticle"
+  config.gem "nokogiri"
   config.time_zone = 'UTC'
 end
 

@@ -2,11 +2,11 @@
 <%- seen_months = {} %>
 <ul class="result_list">
   <% @releases.each do |release| %>
-    <% unless seen_months[release.released_on.month] %>
-      <%- seen_months[release.released_on.month] = true %>
+    <% unless seen_months[release.released_on] %>
+      <%- seen_months[release.released_on] = true %>
       <li class='section_header'>
         <h2>
-          <%= release.released_on.strftime('%B') %>
+          <%= release.released_on.strftime('%B %d, %Y') %>
         </h2>
       </li>
     <% end %>
