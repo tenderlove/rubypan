@@ -4,6 +4,9 @@
   <link href="<%= url_for(:action => 'latest', :format => 'xml') %>"
   type="application/rss+xml" rel="alternate"
   title="Latest Gems RSS Feed" />
+  <link href="<%= url_for(:action => 'latest', :format => 'atom') %>"
+  type="application/atom+xml" rel="alternate"
+  title="Latest Gems Atom Feed" />
 <% end %>
 <ul class="result_list">
   <% @releases.each do |release| %>

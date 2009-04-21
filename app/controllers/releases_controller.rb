@@ -10,6 +10,9 @@ class ReleasesController < ApplicationController
       format.xml do
         response.content_type = 'application/rss+xml'
       end
+      format.atom do
+        response.content_type = 'application/atom+xml'
+      end
       format.html
     end
   end
