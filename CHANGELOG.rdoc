@@ -4,3 +4,4 @@
 	* Authors page lists gems by author
 	* Recent lists recent gems
 	* Recent has RSS / Atom feeds
+	* rate gem releases 1-5 (by-release-by-sessionid)
