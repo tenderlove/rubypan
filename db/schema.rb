@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20090420164334) do
     t.integer "rating"
     t.integer "rateable_id",   :null => false
     t.string  "rateable_type", :null => false
-    t.string  "ip_address"
+    t.string  "session_id"
   end
 
   add_index "ratings", ["rateable_id", "rating"], :name => "index_ratings_on_rateable_id_and_rating"
