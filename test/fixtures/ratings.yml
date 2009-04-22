@@ -4,34 +4,34 @@ one:
   rating: 4
   rateable_id: 1
   rateable_type: Release
-  ip_address: 127.0.0.1
+  session_id: a1feb4df8748fd6fccbfbbd61ee85ab8
   
 two:
   rating: 5
-  rateable_id: 1
+  rateable_id: 2
   rateable_type: Release
-  ip_address: 127.0.0.1
+  session_id: 127.0.0.1
     
 three:
   rating: 3
-  rateable_id: 1
+  rateable_id: 3
   rateable_type: Release
-  ip_address: 127.0.0.1
+  session_id: a1feb4df8748fd6fccbfbbd61ee85ab8
    
 four:
   rating: 3
-  rateable_id: 1
+  rateable_id: 4
   rateable_type: Release
-  ip_address: 127.0.0.1
+  session_id: a1feb4df8748fd6fccbfbbd61ee85ab8
     
 five:
   rating: 5
-  rateable_id: 1
+  rateable_id: 5
   rateable_type: Release
-  ip_address: 127.0.0.1
+  session_id: a1feb4df8748fd6fccbfbbd61ee85ab8
   
 six:
   rating: 3
-  rateable_id: 1
+  rateable_id: 6
   rateable_type: Release
-  ip_address: 127.0.0.1
+  session_id: a1feb4df8748fd6fccbfbbd61ee85ab8

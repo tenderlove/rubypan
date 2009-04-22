@@ -80,13 +80,13 @@ class ReleasesControllerTest < ActionController::TestCase
     assert_equal 3, r.avg_rating
     assert_equal 1, r.num_ratings
     
-    #rate twice
+    #rate twice, replaces rating
     xhr :post, :rate, {:id => rel_id, :rateable_type => 'Release', :rating => 5}
     assert_response :success
     third_rating = Rating.num_ratings(rel_id)
-    assert_equal third_rating, num_ratings_after + 1
+    assert_equal third_rating, num_ratings_after
     r = Release.find(rel_id)
-    assert_equal 4, r.avg_rating
-    assert_equal 2, r.num_ratings
+    assert_equal 5.0, r.avg_rating
+    assert_equal 1, r.num_ratings #still one, b/c rating is replaced
   end
 end
