@@ -18,19 +18,32 @@ class ReleasesController < ApplicationController
   end
   
   def rate
-    @client_ip = request.remote_ip.to_s
+    @session_id = session.session_id #request.session_id.to_s
     release_id = params[:id].to_i
     rating = params[:rating].to_i
     
-    Rating.transaction do
-      r = Rating.new
-      r.ip_address = @client_ip
-      r.rateable_type = params[:rateable_type]
-      r.rating = rating
-      r.rateable_id = release_id
-      r.save
-      avg_ratings_and_update(release_id)
+    if already_rated(release_id, @session_id) == 1
+      Rating.transaction do
+        old_r = Rating.find(:first, :conditions => ["rateable_id = ? AND session_id = ?", release_id, @session_id])
+        old_r.session_id = @session_id
+        old_r.rateable_type = params[:rateable_type]
+        old_r.rating = rating
+        old_r.rateable_id = release_id
+        old_r.save
+        avg_ratings_and_update(release_id)
+      end
+    else #not yet rated, insert rating
+      Rating.transaction do
+        r = Rating.new
+        r.session_id = @session_id
+        r.rateable_type = params[:rateable_type]
+        r.rating = rating
+        r.rateable_id = release_id
+        r.save
+        avg_ratings_and_update(release_id)
+      end
     end
+    
     
     if (request.xhr?)
       render :text => "You rated this gem a #{rating} out of 5! &nbsp;"
@@ -49,6 +62,16 @@ class ReleasesController < ApplicationController
       rel.avg_rating = avg
       rel.num_ratings = num
       rel.save
+    end
+    
+    def already_rated release_id, session_id
+      r = Rating.find(:first, :conditions => ["rateable_id = ? and session_id = ?", release_id, session_id])
+      @session_id = session.session_id
+      if r == nil #no record
+        return 0
+      else
+        return 1  
+      end  
     end
     
 end
