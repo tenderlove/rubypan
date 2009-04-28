@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :authors
   map.connect 'latest', :controller => 'releases', :action => 'latest'
   map.connect 'latest.:format', :controller => 'releases', :action => 'latest'
+  
   map.connect ':action/:id', :controller => 'results'
   map.connect ':action.:format', :controller => 'results'
   
