@@ -33,17 +33,17 @@ class ReleasesControllerTest < ActionController::TestCase
     doc = Nokogiri::XML(@response.body)
     assert_equal releases.length, doc.xpath('//xmlns:entry').length
   end
-  
+
   test "ratings partial shows up with links" do
     q = releases(:nokogiri_1_0_0).ruby_gem.name
     assert_equal q, 'nokogiri'
-    
+
     num_releases = Release.count(:all)
     first_release_id = Release.find(:first).id
-    
+
     get :latest, :format => 'html', :q => q
     assert_response :success
-    
+
     #6 total
     assert_select 'li.current-rating', 1 * num_releases
     assert_select 'ul.gem-rating' do
@@ -55,9 +55,9 @@ class ReleasesControllerTest < ActionController::TestCase
         assert_select 'a.rateable', 5 * num_releases
       end
     end
-    
+
     search_text = ""
-    assert_select "div#rate_area_#{first_release_id}", :count => 1 
+    assert_select "div#rate_area_#{first_release_id}", :count => 1
     assert_select 'ul.gem-rating', :count => 1 * num_releases
     assert_select 'a.one-gems', :count => 1 * num_releases
     assert_select 'a.two-gems', :count => 1 * num_releases
@@ -65,12 +65,11 @@ class ReleasesControllerTest < ActionController::TestCase
     assert_select 'a.four-gems', :count => 1 * num_releases
     assert_select 'a.five-gems', :count => 1 * num_releases
   end
-  
+
   test "a new rating posted via xhr should add a record to the ratings table, and save the average" do
     rel_id = releases(:nokogiri_1_0_0).id
     num_ratings = Rating.num_ratings(rel_id)
-    puts num_ratings
-    
+
     #rate once
     xhr :post, :rate, {:id => rel_id, :rateable_type => 'Release', :rating => 3}
     assert_response :success
@@ -79,7 +78,7 @@ class ReleasesControllerTest < ActionController::TestCase
     r = Release.find(rel_id)
     assert_equal 3, r.avg_rating
     assert_equal 1, r.num_ratings
-    
+
     #rate twice, replaces rating
     xhr :post, :rate, {:id => rel_id, :rateable_type => 'Release', :rating => 5}
     assert_response :success
