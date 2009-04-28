@@ -2,5 +2,4 @@
 .DS_Store
 TAGS
 tags
-config/database.yml
 log/*
