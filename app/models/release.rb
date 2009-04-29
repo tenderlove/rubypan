@@ -1,7 +1,7 @@
 class Release < ActiveRecord::Base
   belongs_to :ruby_gem
-  has_many :ratings
-  
+  has_many :ratings, :foreign_key => 'rateable_id'
+
   index do
     name        'A'
     summary     'B'

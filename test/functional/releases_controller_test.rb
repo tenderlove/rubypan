@@ -67,25 +67,37 @@ class ReleasesControllerTest < ActionController::TestCase
   end
 
   test "a new rating posted via xhr should add a record to the ratings table, and save the average" do
-    rel_id = releases(:nokogiri_1_0_0).id
-    num_ratings = Rating.num_ratings(rel_id)
+    release = releases(:nokogiri_1_0_0)
 
     #rate once
-    xhr :post, :rate, {:id => rel_id, :rateable_type => 'Release', :rating => 3}
-    assert_response :success
-    num_ratings_after = Rating.num_ratings(rel_id)
-    assert_equal num_ratings_after, num_ratings + 1
-    r = Release.find(rel_id)
-    assert_equal 3, r.avg_rating
-    assert_equal 1, r.num_ratings
+    assert_difference('Rating.count') do
+      xhr :post, :rate, {
+        :id             => release.id,
+        :rateable_type  => 'Release',
+        :rating         => 3
+      }
+      assert_response :success
+    end
+
+    release.reload
+    assert_equal 3, release.avg_rating
+    assert_equal 1, release.num_ratings
 
     #rate twice, replaces rating
-    xhr :post, :rate, {:id => rel_id, :rateable_type => 'Release', :rating => 5}
-    assert_response :success
-    third_rating = Rating.num_ratings(rel_id)
-    assert_equal third_rating, num_ratings_after
-    r = Release.find(rel_id)
-    assert_equal 5.0, r.avg_rating
-    assert_equal 1, r.num_ratings #still one, b/c rating is replaced
+    assert_difference('Rating.count', 0) do
+      xhr :post, :rate, {
+        :id             => release.id,
+        :rateable_type  => 'Release',
+        :rating         => 5
+      }
+      assert_response :success
+    end
+
+    release.reload
+    avg = release.ratings.map { |rating|
+      rating.rating
+    }.sum / release.ratings.length.to_f
+
+    assert_equal avg, release.avg_rating
   end
 end
